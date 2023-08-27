@@ -1,0 +1,23 @@
+Install docker.. 
+
+docker run nginx			--> look for nginx in local and get it from hub and use same for future runs.
+
+docker ps					--> List all running containers
+
+docker ps -a				--> all running./existed
+
+docker stop docker-container
+
+docker rm docker-container	--> to remove
+
+docker images				--> to list of all images and sizes
+
+docker rmi imagename		--> delete image
+
+docker run nginx			--> download and run the image
+
+docker pull nginx			--> Just download the image
+
+docker run ubuntu sleep 60
+
+docker run -it -p 8080:80 imageid

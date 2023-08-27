@@ -1,0 +1,12 @@
+{
+  "name": "ecs-fargate-sample",
+  "version": "1.0.0",
+  "description": "A simple Node.js application for AWS ECS Fargate",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
