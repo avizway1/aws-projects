@@ -1,0 +1,35 @@
+
+==========================================================
+
+
+{
+    "Version": "2012-10-17",
+    "Id": "",
+    "Statement": [
+        {
+            "Sid": "Object Level Permissions",
+            "Effect": "Allow",
+            "Principal": {
+                "AWS": "arn:aws:iam::123123123123:role/service-role/s3crr_role_for_avinash.yt.source"
+            },
+            "Action": [
+                "s3:ReplicateObject",
+                "s3:ReplicateDelete"
+            ],
+            "Resource": "arn:aws:s3:::avinash.destination/*"
+        },
+        {
+            "Sid": "Bucket Level Permissions",
+            "Effect": "Allow",
+            "Principal": {
+                "AWS": "arn:aws:iam::123123123123:role/service-role/s3crr_role_for_avinash.yt.source"
+            },
+            "Action": [
+                "s3:List*",
+                "s3:GetBucketVersioning",
+                "s3:PutBucketVersioning"
+            ],
+            "Resource": "arn:aws:s3:::avinash.destination"
+        }
+    ]
+}
