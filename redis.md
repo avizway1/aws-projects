@@ -53,6 +53,7 @@ cp redis-cli /usr/bin/
      - `-tls`: Enables TLS for secure communication.
      - `-a`: Provides the authentication password (`YOURPASSWORD`).
      - `-p`: Specifies the port number (`6379`) on which the Redis server is running.
+     - `-c`: Specifies this if your redis cluster is created with Cluster mode enabled. (`redis-cli -c -h your-cluster-info.cache.amazonaws.com -tls -a YOURPASSWORD -p 6379`).
 	 
 ```bash
 redis-cli -h your-cluster-info.cache.amazonaws.com -tls -a YOURPASSWORD -p 6379
