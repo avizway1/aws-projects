@@ -38,11 +38,11 @@ sudo make BUILD_TLS=yes
    - Grants execute (`+x`) permission to the Redis command-line interface (`redis-cli`) binary. This allows the binary to be executed as a program. Copies the Redis CLI binary (`redis-cli`) to the `/usr/bin/` directory. Placing it in this directory allows you to run `redis-cli` from any location in the terminal without specifying the full path.
 
 ```bash
-chmod a+x src/redis-cli
+chmod a+x /src/redis-cli
 ```
 
 ```bash
-cp redis-cli /usr/bin/
+cp /src/redis-cli /usr/bin/
 ```
 
 
