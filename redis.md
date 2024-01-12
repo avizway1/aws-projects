@@ -78,7 +78,7 @@ sudo yum install java-1.8.0-openjdk-devel -y
 sudo update-alternatives --config java
 ```
 
-8. - Setup JAVA_HOME
+8. Setup JAVA_HOME
 
 ```bash
 echo $JAVA_HOME
@@ -100,7 +100,7 @@ export PATH
 source ~/.bashrc
 ```
 
-9. - Install Git to clone the Sample application
+9. Install Git to clone the Sample application
 
 ```bash
 yum install git -y
@@ -141,6 +141,29 @@ mvn dependency:resolve-plugins
 
 ```bash
 mvn clean install
+```
+
+11. **Make sure you create an IAM role and attach the role to your ec2 instance.**
+
+Role should have policy to connect to cluster. Refer the sample IAM policy attached to the role. 
+*Note: I have added wildcard for most of the Resources, You can limit to the users and replication groups.*
+
+```bash
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "VisualEditor0",
+            "Effect": "Allow",
+            "Action": "elasticache:Connect",
+            "Resource": [
+                "arn:aws:elasticache:*:123456789123:user:*",
+                "arn:aws:elasticache:*:123456789123:serverlesscache:*",
+                "arn:aws:elasticache:*:123456789123:replicationgroup:*"
+            ]
+        }
+    ]
+}
 ```
 
 11. **get your cluster info.**
