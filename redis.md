@@ -1,31 +1,3 @@
-Amazon ElastiCache is a fully managed, in-memory caching service provided by Amazon Web Services (AWS). ElastiCache supports popular in-memory data stores such as Redis and Memcached, allowing you to easily deploy, manage, and scale caching solutions in the cloud.
-
-### Redis in Amazon ElastiCache:
-
-Redis is one of the supported in-memory data stores in Amazon ElastiCache. It is an open-source, advanced key-value store known for its high performance, flexibility, and rich feature set. Here are some advantages of using Amazon ElastiCache with Redis:
-
-1. **Managed Service:**
-   - ElastiCache is a fully managed service, meaning AWS takes care of operational tasks such as hardware provisioning, software patching, setup, and configuration. This allows you to focus on building and optimizing your applications.
-
-2. **Performance:**
-   - Redis is an in-memory data store, providing fast read and write operations. ElastiCache leverages the performance benefits of Redis, making it suitable for use cases that require low-latency access to frequently accessed data.
-
-3. **Caching:**
-   - ElastiCache with Redis is commonly used as a caching layer to store frequently accessed data, reducing the load on backend databases. This can significantly improve the overall performance of applications.
-
-4. **Security:**
-   - ElastiCache provides security features such as encryption in transit and at rest, ensuring that data is transmitted securely between clients and the cache cluster and stored securely on disk.
-
-5. **Integration with AWS Services:**
-   - ElastiCache integrates seamlessly with other AWS services, making it easy to incorporate caching into your AWS-based applications. For example, it can be used with Amazon RDS, Amazon EC2, and AWS Lambda.
-
-6. **Cost Optimization:**
-    - By using ElastiCache for caching, you can optimize costs by reducing the load on your primary databases, improving overall system efficiency.
-
-In summary, Amazon ElastiCache with Redis offers a fully managed and scalable caching solution that enhances the performance, availability, and security of your applications, especially those with high read and low-latency requirements.
-
-
-**'Install redis-cli in Amazon Linux 2'**
 
 1. **Installs the Extra Packages for Enterprise Linux (EPEL)**
    - Installs the Extra Packages for Enterprise Linux (EPEL) repository on an Amazon Linux system. EPEL provides additional software packages that are not included in the default Amazon Linux repositories.
@@ -67,11 +39,7 @@ sudo make BUILD_TLS=yes
    - Grants execute (`+x`) permission to the Redis command-line interface (`redis-cli`) binary. This allows the binary to be executed as a program. Copies the Redis CLI binary (`redis-cli`) to the `/usr/bin/` directory. Placing it in this directory allows you to run `redis-cli` from any location in the terminal without specifying the full path.
 
 ```bash
-cd /src
-```
-
-```bash
-chmod a+x redis-cli
+chmod a+x src/redis-cli
 ```
 
 ```bash
@@ -85,8 +53,110 @@ cp redis-cli /usr/bin/
      - `-tls`: Enables TLS for secure communication.
      - `-a`: Provides the authentication password (`YOURPASSWORD`).
      - `-p`: Specifies the port number (`6379`) on which the Redis server is running.
-     - `-c`: Specifies this if your redis cluster is created with Cluster mode enabled. (`redis-cli -c -h your-cluster-info.cache.amazonaws.com -tls -a YOURPASSWORD -p 6379`).
 	 
 ```bash
 redis-cli -h your-cluster-info.cache.amazonaws.com -tls -a YOURPASSWORD -p 6379
+```
+
+If you want to use IAM authentication to connect to the Redis cluster, Follow below steps.
+
+
+7. **Install Java, Git and naven**
+
+- Install Git, Java and Mavaen to Clone and build AWS sample application
+
+
+```bash
+sudo amazon-linux-extras install java-openjdk11 -y
+```
+
+```bash
+sudo yum install java-1.8.0-openjdk-devel -y
+```
+
+```bash
+sudo update-alternatives --config java
+```
+
+8. - Setup JAVA_HOME
+
+```bash
+echo $JAVA_HOME
+```
+
+```bash
+export  JAVA_HOME='/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.392.b08-2.amzn2.0.1.x86_64/jre'
+```
+
+```bash
+PATH=$JAVA_HOME/bin:$PATH
+```
+
+```bash
+export PATH
+```
+
+```bash
+source ~/.bashrc
+```
+
+9. - Install Git to clone the Sample application
+
+```bash
+yum install git -y
+```
+
+**Maven Installation**
+
+```bash
+sudo wget http://repos.fedorapeople.org/repos/dchen/apache-maven/epel-apache-maven.repo -O /etc/yum.repos.d/epel-apache-maven.repo
+```
+
+```bash
+sudo sed -i s/\$releasever/6/g /etc/yum.repos.d/epel-apache-maven.repo
+```
+
+```bash
+sudo yum install -y apache-maven
+```
+
+```bash
+mvn --version
+```
+
+
+```bash
+git clone https://github.com/aws-samples/elasticache-iam-auth-demo-app.git
+```
+
+```bash
+cd elasticache-iam-auth-demo-app
+```
+
+```bash
+mvn dependency:resolve-plugins
+```
+
+10. **Prepare the build**
+
+```bash
+mvn clean install
+```
+
+11. **get your cluster info.**
+
+**Now Create Users and Groups*, then proceed to connect to the cluster**
+
+***Replace with your created cluster name, username***
+
+**Get the required token to connect**
+
+```bash
+java -cp target/ElastiCacheIAMAuthDemoApp-1.0-SNAPSHOT.jar com.amazon.elasticache.IAMAuthTokenGeneratorApp --region ***ap-south-1*** --replication-group-id ***myredis*** --user-id ***avinash***
+```
+
+12. **Test connection using Demo-Application**
+
+```bash
+java -jar target/ElastiCacheIAMAuthDemoApp-1.0-SNAPSHOT.jar --redis-host ***master.myredis.77otcp.aps1.cache.amazonaws.com*** --region ***ap-south-1*** --replication-group-id ***myredis*** --user-id ***avinash*** --tls
 ```
