@@ -11,10 +11,9 @@ sudo amazon-linux-extras install epel -y
 
 ```bash
 sudo yum install gcc jemalloc-devel openssl-devel tcl tcl-devel -y
-```   
-   
+```      
 
-3. **Download SOurce Code and unzip**
+3. **Download Source Code and unzip**
    - Downloads the Redis source code archive (`redis-stable.tar.gz`) from the official Redis website.
    
 ```bash
