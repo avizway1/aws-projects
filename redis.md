@@ -166,7 +166,7 @@ Role should have policy to connect to cluster. Refer the sample IAM policy attac
 }
 ```
 
-11. **get your cluster info.**
+12. **get your cluster info.**
 
 **Now Create Users and Groups*, then proceed to connect to the cluster**
 
@@ -178,7 +178,7 @@ Role should have policy to connect to cluster. Refer the sample IAM policy attac
 java -cp target/ElastiCacheIAMAuthDemoApp-1.0-SNAPSHOT.jar com.amazon.elasticache.IAMAuthTokenGeneratorApp --region ***ap-south-1*** --replication-group-id ***myredis*** --user-id ***avinash***
 ```
 
-12. **Test connection using Demo-Application**
+13. **Test connection using Demo-Application**
 
 ```bash
 java -jar target/ElastiCacheIAMAuthDemoApp-1.0-SNAPSHOT.jar --redis-host ***master.myredis.77otcp.aps1.cache.amazonaws.com*** --region ***ap-south-1*** --replication-group-id ***myredis*** --user-id ***avinash*** --tls
