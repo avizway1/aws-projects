@@ -1,0 +1,71 @@
+=============================================
+
+CREATE SCHEMA finance;
+USE finance;
+
+CREATE TABLE finance (
+    employee_id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(50),
+    department VARCHAR(50),
+    salary DECIMAL(10, 2)
+);
+
+INSERT INTO finance (name, department, salary) VALUES
+('Avinash Redy', 'finance', 65000.00),
+('Anudeep Reddy', 'finance', 63000.00),
+('Aravind t', 'finance', 62000.00),
+('Skanda reddy', 'finance', 67000.00),
+('raghu', 'finance', 64000.00);
+
+
+INSERT INTO finance (name, department, salary) VALUES
+('Avinash Redy1', 'finance', 65000.00),
+('Anudeep Reddy1', 'finance', 63000.00),
+('Aravind t1', 'finance', 62000.00),
+('Skanda reddy1', 'finance', 67000.00),
+('raghu1', 'finance', 64000.00);
+
+=============================================
+
+
+CREATE SCHEMA hr;
+use hr;
+
+CREATE TABLE hr (
+    employee_id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(50),
+    department VARCHAR(50),
+    salary DECIMAL(10, 2)
+);
+
+INSERT INTO hr (name, department, salary) VALUES
+('Rahul Sharma', 'Human Resources', 60000.00),
+('Priya Patel', 'Human Resources', 55000.00),
+('Vikram Kumar', 'Human Resources', 62000.00),
+('Neha Singh', 'Human Resources', 58000.00),
+('Sanjay Gupta', 'Human Resources', 63000.00);
+
+
+
+===========================
+
+
+CREATE SCHEMA marketing;
+use marketing;
+
+CREATE TABLE marketing (
+    employee_id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(50),
+    department VARCHAR(50),
+    salary DECIMAL(10, 2)
+);
+
+INSERT INTO marketing (name, department, salary) VALUES
+('Aarti Singh', 'Marketing', 65000.00),
+('Arjun Patel', 'Marketing', 63000.00),
+('Ananya Gupta', 'Marketing', 62000.00),
+('Sunita Sharma', 'Marketing', 67000.00),
+('Rajesh Devi', 'Marketing', 64000.00);
+
+
+
